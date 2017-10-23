@@ -1,0 +1,27 @@
+# MAKEFILE SERVER
+
+all: server borra borrar
+
+borra: borra.c
+	gcc -Wall -W -o borra borra.c -lpthread
+
+server: util.o traduccion.o prlib.o hilo.o server.o 
+	gcc -o server server.o traduccion.o util.o prlib.o hilo.o -lpthread
+
+server.o: server.c util.h traduccion.h prlib.h hilo.h
+	gcc -Wall -W -c server.c
+
+traduccion.o: traduccion.c traduccion.h
+	gcc -Wall -W -c traduccion.c
+
+util.o: util.c util.h
+	gcc -Wall -W -c util.c
+
+hilo.o: hilo.c hilo.h prlib.h
+	gcc -Wall -W -c hilo.c
+
+prlib.o: prlib.c prlib.h
+	gcc -Wall -W -c prlib.c
+
+borrar:
+	rm *.o

@@ -1,0 +1,18 @@
+# MAKEFILE CLIENTE
+
+all: cliente borrar
+
+cliente: cliente.o util.o traduccion.o funcCliente.o
+	gcc -o cliente cliente.o traduccion.o util.o funcCliente.o
+
+funcCliente.o: funcCliente.c funcCliente.h util.h traduccion.h
+	gcc -Wall -W -c funcCliente.c
+
+traduccion.o: traduccion.c traduccion.h
+	gcc -Wall -W -c traduccion.c
+
+util.o: util.c util.h
+	gcc -Wall -W -c util.c
+
+borrar:
+	rm *.o
